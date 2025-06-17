@@ -224,7 +224,8 @@ with st.form("migraine_prediction_form"):
 
         try:
             # Send the data to the FastAPI backend
-            response = requests.post(FASTAPI_URL, json=input_data)
+            response = requests.post(f"{FASTAPI_URL.rstrip('/')}/predict", json=input_data)
+
             response.raise_for_status()  # Raise an exception for HTTP errors (4xx or 5xx)
 
             prediction_result = response.json()
@@ -251,7 +252,6 @@ with st.form("migraine_prediction_form"):
             st.error(f"An unexpected error occurred: {e}")
 
 st.sidebar.header("About")
-st.sidebar.text(f"FASTAPI_URL: {FASTAPI_URL}")
 st.sidebar.info(
     "This application uses a Machine Learning model (specifically, the Gradient Boosting Classifier "
     "from your 'trained_models_pkl' folder) to predict migraine types based on symptom inputs. "
