@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  backend:
+    image: ghcr.io/mohsinidrees2817/ec2deployment/backend:latest
+    container_name: backend
+    ports:
+      - "8000:8000"
+
+  frontend:
+    image: ghcr.io/mohsinidrees2817/ec2deployment/frontend:latest
+    container_name: frontend
+    ports:
+      - "8501:8501"
+    environment:
+      FASTAPI_BACKEND_URL: http://backend:8000/predict
