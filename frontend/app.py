@@ -239,7 +239,7 @@ with st.form("migraine_prediction_form"):
 
         except requests.exceptions.ConnectionError:
             st.error(
-                "Could not connect to the FastAPI backend. Please ensure the backend server is running at the correct URL."
+                "Could not connect to the FastAPI backend. Please ensure the backend server is running at the correct URL. "
             )
         except requests.exceptions.RequestException as e:
             st.error(f"An error occurred during the API request: {e}.")
@@ -251,6 +251,7 @@ with st.form("migraine_prediction_form"):
             st.error(f"An unexpected error occurred: {e}")
 
 st.sidebar.header("About")
+st.sidebar.text(f"FASTAPI_URL: {FASTAPI_URL}")
 st.sidebar.info(
     "This application uses a Machine Learning model (specifically, the Gradient Boosting Classifier "
     "from your 'trained_models_pkl' folder) to predict migraine types based on symptom inputs. "
